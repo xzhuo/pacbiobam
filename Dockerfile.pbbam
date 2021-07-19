@@ -14,7 +14,7 @@ ENV LD_LIBRARY_PATH=/usr/src/miniconda3/lib
 
 RUN conda config --add channels bioconda \
     && conda config --add channels conda-forge \
-    && conda install -y htslib samtools=1.11 pbccs extracthifi
+    && conda install -y htslib samtools=1.11 bamtools pbccs extracthifi
 
 WORKDIR /usr/src
 RUN wget https://anaconda.org/bioconda/pbbam/1.6.0/download/linux-64/pbbam-1.6.0-h058f120_1.tar.bz2 \
