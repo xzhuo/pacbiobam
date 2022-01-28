@@ -1,24 +1,26 @@
-FROM ubuntu
+# FROM ubuntu
 
-RUN apt-get update \
-    && apt-get install -y wget \
-    && apt-get clean
+# RUN apt-get update \
+#     && apt-get install -y wget \
+#     && apt-get clean
 
 # conda
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/src/miniconda3 \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh 
-ENV PATH=${PATH}:/usr/src/miniconda3/bin
-ENV LD_LIBRARY_PATH=/usr/src/miniconda3/lib
+# RUN wget \
+#     https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+#     && bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/src/miniconda3 \
+#     && rm -f Miniconda3-latest-Linux-x86_64.sh 
+# ENV PATH=${PATH}:/usr/src/miniconda3/bin
+# ENV LD_LIBRARY_PATH=/usr/src/miniconda3/lib
+
+FROM conda/miniconda3
 
 RUN conda config --add channels bioconda \
     && conda config --add channels conda-forge \
-    && conda install -y htslib samtools=1.13 bedtools bamtools pbccs extracthifi
+    && conda install -y htslib samtools bedtools bamtools pbccs pbbam extracthifi primrose
 
-WORKDIR /usr/src
-RUN wget https://anaconda.org/bioconda/pbbam/1.6.0/download/linux-64/pbbam-1.6.0-h058f120_1.tar.bz2 \
-    && mkdir pbbam \
-    && tar -jxf pbbam-1.6.0-h058f120_1.tar.bz2 -C pbbam \
-    && rm pbbam-1.6.0-h058f120_1.tar.bz2
-ENV PATH=${PATH}:/usr/src/pbbam/bin
+# WORKDIR /usr/src
+# RUN wget https://anaconda.org/bioconda/pbbam/1.6.0/download/linux-64/pbbam-1.6.0-h058f120_1.tar.bz2 \
+#     && mkdir pbbam \
+#     && tar -jxf pbbam-1.6.0-h058f120_1.tar.bz2 -C pbbam \
+#     && rm pbbam-1.6.0-h058f120_1.tar.bz2
+# ENV PATH=${PATH}:/usr/src/pbbam/bin
