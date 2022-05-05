@@ -16,7 +16,7 @@ FROM conda/miniconda3
 
 RUN conda config --add channels bioconda \
     && conda config --add channels conda-forge \
-    && conda install -y htslib samtools bedtools bamtools minimap2 pbccs pbmm2 pbbam extracthifi primrose
+    && conda install -y htslib samtools bedtools bamtools minimap2 pbccs pbmm2 pbbam extracthifi primrose rustybam
 
 # WORKDIR /usr/src
 # RUN wget https://anaconda.org/bioconda/pbbam/1.6.0/download/linux-64/pbbam-1.6.0-h058f120_1.tar.bz2 \
